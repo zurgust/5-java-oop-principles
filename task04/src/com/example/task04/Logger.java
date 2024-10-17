@@ -1,9 +1,6 @@
-package com.example.task01;
+package com.example.task04;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import com.example.*;
+import java.util.*;
 
 public class Logger {
 
@@ -18,10 +15,15 @@ public class Logger {
     private String name;
     private static Level currentLvl = Level.DEBUG;
     private static final Map<String, Logger> loggers = new HashMap<>();
+    private List<MessageHandler> handlers = new ArrayList<>();
 
     // Приватный конструктор
     private Logger(String name) {
         this.name = name;
+    }
+
+    public void addHandler(MessageHandler handler) {
+        handlers.add(handler);
     }
 
     public void setName(String name){
@@ -51,7 +53,12 @@ public class Logger {
         if (level.ordinal() >= currentLvl.ordinal()) {  // Проверяем уровень важности
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
             String dateTime = dateFormat.format(new Date());
-            System.out.println("[" + level + "] " + dateTime + " " + name + " - " + message);
+            String formattedMessage = "[" + level + "] " + dateTime + " " + name + " - " + message;
+
+            // Отправка сообщения всем зарегистрированным обработчикам
+            for (MessageHandler handler : handlers) {
+                handler.handle(formattedMessage);
+            }
         }
     }
 

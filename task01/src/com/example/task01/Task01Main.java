@@ -24,7 +24,7 @@ public class Task01Main {
 
 
         // Логгирование с форматированием
-        logger1.info("Formatted message: %s", "INFO level");
+        logger1.info("дрл message: %s", "INFO level");
         logger2.error("Error with code: %d", 404);
     }
 }

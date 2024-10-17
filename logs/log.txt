@@ -1,0 +1,4 @@
+[DEBUG] 2024.10.17 23:38:31 AdvancedLogger - This is a debug message.
+[INFO] 2024.10.17 23:38:31 AdvancedLogger - This is an info message.
+[WARNING] 2024.10.17 23:38:31 AdvancedLogger - This is a warning message.
+[ERROR] 2024.10.17 23:38:31 AdvancedLogger - This is an error message.
